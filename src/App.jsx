@@ -57,8 +57,12 @@ function App() {
   }
   return (
     <div className="page">
-      <header className='header'>
-        <h1 className='heading'>Movies Findini</h1>
+      <header className="header">
+        <div>
+          <h1 className={error ? "heading isError" : " heading noError"}>
+            Movies Findini
+          </h1>
+        </div>
         <form
           className="form"
           onSubmit={(e) => handleSubmit(e)}
@@ -66,21 +70,39 @@ function App() {
           <input
             type="text"
             placeholder="Spider Man, Avengers, Fast & Furious"
-            name='query'
-            value={ search }
-            onChange={ handleChange }
-            style={{border:'1px solid transparent' ,borderColor: error ? 'red' : 'transparent'}}
+            name="query"
+            value={search}
+            onChange={handleChange}
+            style={{
+              border: "1px solid transparent",
+              borderColor: error ? "red" : "transparent",
+            }}
           />
           <button type="submit">Search</button>
         </form>
-        { error && <h2 className='error' style={ {
-          fontSize:'15px', backgroundColor: 'lightcoral', borderRadius: '5px', textAlign: 'center',
-          padding: '5px', border: '1px solid red', color: 'red', fontWeight: 'bold', textTransform: 'uppercase'
-        ,display:'inline-block'} }>{ error }</h2> }
+        {error && (
+          <h2
+            className="error"
+            style={{
+              fontSize: "15px",
+              backgroundColor: "lightcoral",
+              borderRadius: "5px",
+              textAlign: "center",
+              padding: "5px",
+              border: "1px solid red",
+              color: "red",
+              fontWeight: "bold",
+              textTransform: "uppercase",
+              display: "inline-block",
+            }}
+          >
+            {error}
+          </h2>
+        )}
       </header>
       <main>
         <Movies
-          movies={ movies }
+          movies={movies}
           search={search}
         />
       </main>

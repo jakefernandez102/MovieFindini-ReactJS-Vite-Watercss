@@ -4,7 +4,7 @@
    justify-content: center;
    align-items: center;
    width: 100%;
-   max-width: 800px;
+   max-width: 1200px;
 
 }
 
@@ -52,6 +52,7 @@ form {
 
 .heading {
    position: relative;
+
 }
 
 .heading::after {
@@ -81,27 +82,67 @@ form {
    left: 10px;
 }
 
+.isError:before {
+   position: absolute;
+   display: block;
+   content: '';
+   background-image: url(../public/wizard.png);
+   width: 95px;
+   height: 95px;
+   top: -25px;
+   left: -110px;
+   background-color: rgb(255 255 255 /.1);
+   border: 2px dotted brown;
+   border-radius: 20%;
+   box-shadow: .1px .1px 20px 1px rgb(225, 81, 81);
+}
+.noError:before {
+   position: absolute;
+   display: block;
+   content: '';
+   background-image: url(../public/wizard.png);
+   width: 95px;
+   height: 95px;
+   top: -25px;
+   left: -110px;
+   background-color: rgb(255 255 255 /.1);
+   border: 2px dotted brown;
+   border-radius: 20%;
+   box-shadow: .1px .1px 20px 1px rgb(105, 225, 81);
+}
+
 .movies {
+   background-color: var(--background);
+   border-radius: 10px;
    display: grid;
    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
    width: 100%;
    margin: 0;
-   padding: 10px;
+   padding: 15px;
    list-style: none;
    gap: 16px;
 }
 
 .movie {
+   background-color: var(--background-body);
+   border-radius: 10px;
    display: flex;
    flex-direction: column;
    gap: 16px;
    text-align: center;
+   padding: 10px;
+   box-shadow: 1px 1px 10px .1px rgb(82, 183, 150);
 }
 
 .movie h3,
 .movie p {
    margin: 0;
    padding: 0;
+}
+
+.movie p {
+   font-weight: 700;
+   font-size: 20px;
 }
 
 .movie img {
