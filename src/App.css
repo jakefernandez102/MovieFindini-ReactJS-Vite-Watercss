@@ -1,0 +1,110 @@
+.page {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   width: 100%;
+   max-width: 800px;
+
+}
+
+main {
+   display: flex;
+   justify-content: center;
+   width: 100%;
+}
+
+form {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.header {
+   width: 100%;
+   height: 250px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: space-evenly;
+   position: relative;
+}
+
+.error {
+   position: absolute;
+   bottom: -30px;
+   left: 230px;
+}
+
+.error::after {
+   display: block;
+   content: '';
+   border-bottom: 20px solid lightcoral;
+   border-right: 20px solid red;
+   position: absolute;
+   padding: 10px;
+   z-index: -1;
+   rotate: 225deg;
+   top: -12px;
+   right: 50%;
+
+}
+
+.heading {
+   position: relative;
+}
+
+.heading::after {
+   position: absolute;
+   display: block;
+   content: '';
+   background-image: url(../public/wizard.png);
+   width: 95px;
+   height: 95px;
+   top: -25px;
+   left: -110px;
+   background-color: rgb(255 255 255 /.1);
+   border: 2px dotted brown;
+   border-radius: 20%;
+   box-shadow: .1px .1px 10px .1px white;
+}
+
+.heading::before {
+   display: block;
+   content: '';
+   position: absolute;
+   width: 10px;
+   height: 10px;
+   background-color: white;
+   border-radius: 100%;
+   box-shadow: 2px 1px 15px 5px white;
+   left: 10px;
+}
+
+.movies {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+   width: 100%;
+   margin: 0;
+   padding: 10px;
+   list-style: none;
+   gap: 16px;
+}
+
+.movie {
+   display: flex;
+   flex-direction: column;
+   gap: 16px;
+   text-align: center;
+}
+
+.movie h3,
+.movie p {
+   margin: 0;
+   padding: 0;
+}
+
+.movie img {
+   margin-top: 1 6px;
+   border-radius: 8px;
+}
