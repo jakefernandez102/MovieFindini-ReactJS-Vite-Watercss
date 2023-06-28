@@ -1,3 +1,5 @@
+
+
 export const searchMovies = async ( { search } ) => {
    if ( search === '' ) return null;
    if ( search ) {

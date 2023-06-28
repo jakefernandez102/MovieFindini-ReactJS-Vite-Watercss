@@ -52,7 +52,8 @@ form {
 
 .heading {
    position: relative;
-
+   transition: all 500ms ease-in-out;
+   letter-spacing: 2.5px;
 }
 
 .heading::after {
@@ -68,6 +69,15 @@ form {
    border: 2px dotted brown;
    border-radius: 20%;
    box-shadow: .1px .1px 10px .1px white;
+   transition: all 500ms ease-in-out;
+}
+
+@media screen and (max-width: 443px) {
+   .heading::after {
+      top: -90px;
+      left: 70px
+   }
+
 }
 
 .heading::before {
@@ -79,10 +89,20 @@ form {
    background-color: white;
    border-radius: 100%;
    box-shadow: 2px 1px 15px 5px white;
+   top: 0;
    left: 10px;
+   /* transition: all 500ms ease-in-out; */
+   animation: mymove 1s infinite;
 }
 
-.isError:before {
+@keyframes mymove {
+
+   50% {
+      top: 5px;
+   }
+}
+
+.isError:after {
    position: absolute;
    display: block;
    content: '';
@@ -95,8 +115,10 @@ form {
    border: 2px dotted brown;
    border-radius: 20%;
    box-shadow: .1px .1px 20px 1px rgb(225, 81, 81);
+   transition: all 500ms ease-in-out;
 }
-.noError:before {
+
+.noError:after {
    position: absolute;
    display: block;
    content: '';
@@ -109,6 +131,7 @@ form {
    border: 2px dotted brown;
    border-radius: 20%;
    box-shadow: .1px .1px 20px 1px rgb(105, 225, 81);
+   transition: all 500ms ease-in-out;
 }
 
 .movies {
@@ -130,7 +153,6 @@ form {
    flex-direction: column;
    gap: 16px;
    text-align: center;
-   padding: 10px;
    box-shadow: 1px 1px 10px .1px rgb(82, 183, 150);
 }
 
@@ -139,7 +161,9 @@ form {
    margin: 0;
    padding: 0;
 }
-
+.movie h3{
+   margin-top: 20px;
+}
 .movie p {
    font-weight: 700;
    font-size: 20px;
@@ -148,4 +172,75 @@ form {
 .movie img {
    margin-top: 1 6px;
    border-radius: 8px;
+}
+
+.spinner {
+   margin: 100px auto;
+   width: 40px;
+   height: 40px;
+   position: relative;
+   text-align: center;
+
+   -webkit-animation: sk-rotate 2.0s infinite linear;
+   animation: sk-rotate 2.0s infinite linear;
+}
+
+.dot1,
+.dot2 {
+   width: 60%;
+   height: 60%;
+   display: inline-block;
+   position: absolute;
+   top: 0;
+   background-color: rgb(105 225 81 /.5);
+   border-radius: 100%;
+
+   -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
+   animation: sk-bounce 2.0s infinite ease-in-out;
+}
+
+.dot2 {
+   top: auto;
+   bottom: 0;
+   -webkit-animation-delay: -1.0s;
+   animation-delay: -1.0s;
+}
+
+@-webkit-keyframes sk-rotate {
+   100% {
+      -webkit-transform: rotate(360deg)
+   }
+}
+
+@keyframes sk-rotate {
+   100% {
+      transform: rotate(360deg);
+      -webkit-transform: rotate(360deg)
+   }
+}
+
+@-webkit-keyframes sk-bounce {
+
+   0%,
+   100% {
+      -webkit-transform: scale(0.0)
+   }
+
+   50% {
+      -webkit-transform: scale(1.0)
+   }
+}
+
+@keyframes sk-bounce {
+
+   0%,
+   100% {
+      transform: scale(0.0);
+      -webkit-transform: scale(0.0);
+   }
+
+   50% {
+      transform: scale(1.0);
+      -webkit-transform: scale(1.0);
+   }
 }

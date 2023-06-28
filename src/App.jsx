@@ -1,9 +1,10 @@
 import './App.css';
 
-import { useEffect, useRef, useState } from 'react';
+import debounce from 'just-debounce-it';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { Movies } from './components/Movies';
-import { userMovie } from './hooks/useMovies';
+import { useMovie } from './hooks/useMovies';
 
 function useSearch() {
   const [search, setSearch] = useState('')
@@ -37,29 +38,50 @@ function useSearch() {
 
 function App() {
   
+  const [ sort, setSort ] = useState( '' );
   const { search, setSearch, error } = useSearch();
-  const { movies, getMovies } = userMovie({search});
-  
+  const { movies, getMovies, loading } = useMovie({search,sort});
 
+
+  const debouncedMovies = useCallback(
+    debounce( search => {
+    console.log( { search } );
+    getMovies( { search } )
+  },500),[]);
 
   function handleSubmit( e ) {
     e.preventDefault();
+    if ( search?.length === 0 ) return;
     // const {query} = Object.fromEntries(new window.FormData(e.target))
-    getMovies()
+    getMovies({search})
+  }
+
+  function handleSort(option) {
+    setSort( option )
   }
 
   function handleChange( e ) {
     const newQuery = e.target.value;
-    if(newQuery.startsWith(' '))return
+    const newSearch = e.target.value;
+    if ( newQuery.startsWith( ' ' ) ) return
     setSearch( newQuery );
-    
+    debouncedMovies(newSearch);
     
   }
+  
   return (
     <div className="page">
       <header className="header">
         <div>
-          <h1 className={error ? "heading isError" : " heading noError"}>
+          <h1
+            className={
+              movies?.length <= 0
+                ? "heading"
+                : error
+                ? "heading isError"
+                : " heading noError"
+            }
+          >
             Movies Findini
           </h1>
         </div>
@@ -78,6 +100,17 @@ function App() {
               borderColor: error ? "red" : "transparent",
             }}
           />
+          <select
+            name="sortYear"
+            id="sortYear"
+            onChange={(e)=>handleSort(e.target.value)}
+            defaultValue="0"
+            disabled={(movies?.length === 0) ? true : error ?  true : false }
+          >
+            <option value="0" disabled>-- Sort by --</option>
+            <option value="1">Year</option>
+            <option value="2">Name</option>
+          </select>
           <button type="submit">Search</button>
         </form>
         {error && (
@@ -101,10 +134,17 @@ function App() {
         )}
       </header>
       <main>
-        <Movies
-          movies={movies}
-          search={search}
-        />
+        {loading ? (
+          <div className="spinner">
+            <div className="dot1"></div>
+            <div className="dot2"></div>
+          </div>
+        ) : (
+          <Movies
+            movies={movies}
+            search={search}
+          />
+        )}
       </main>
     </div>
   );
