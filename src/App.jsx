@@ -41,11 +41,14 @@ function App() {
   const [ sort, setSort ] = useState( '' );
   const { search, setSearch, error } = useSearch();
   const { movies, getMovies, loading } = useMovie({search,sort});
+  const prevSearch = useRef(search);
 
 
   const debouncedMovies = useCallback(
     debounce( search => {
+      if (search === prevSearch) return;
     console.log( { search } );
+    console.log( 'me ejecuto' );
     getMovies( { search } )
   },500),[]);
 
@@ -104,8 +107,8 @@ function App() {
             name="sortYear"
             id="sortYear"
             onChange={(e)=>handleSort(e.target.value)}
-            defaultValue="0"
-            disabled={(movies?.length === 0) ? true : error ?  true : false }
+            value={(movies?.length === 0) ? "0" : "1"}
+            disabled={(movies?.length === 0) ? true : !movies ? true :  error ? true : false}
           >
             <option value="0" disabled>-- Sort by --</option>
             <option value="1">Year</option>
