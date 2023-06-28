@@ -39,8 +39,10 @@ function useSearch() {
 function App() {
   
   const [ sort, setSort ] = useState( '' );
+  const [ selectValue, setSelectValue ] = useState( '' );
   const { search, setSearch, error } = useSearch();
-  const { movies, getMovies, loading } = useMovie({search,sort});
+  const { movies, getMovies, loading } = useMovie( { search, sort } );
+  
   const prevSearch = useRef(search);
 
 
@@ -60,6 +62,7 @@ function App() {
   }
 
   function handleSort(option) {
+    setSelectValue(option)
     setSort( option )
   }
 
@@ -107,7 +110,7 @@ function App() {
             name="sortYear"
             id="sortYear"
             onChange={(e)=>handleSort(e.target.value)}
-            value={(movies?.length === 0) ? "0" : "1"}
+            value={(movies?.length === 0) ? "0" : selectValue}
             disabled={(movies?.length === 0) ? true : !movies ? true :  error ? true : false}
           >
             <option value="0" disabled>-- Sort by --</option>
