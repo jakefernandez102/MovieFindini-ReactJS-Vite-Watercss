@@ -9,20 +9,25 @@ export function useMovie({search,sort}) {
   const [ movies, setMovies ] = useState( [] );
   const [ loading , setLoading] = useState( false );
   const [ error , setError] = useState( {} );
-  const prevSearch = useRef(search)
+  const [ images , setImages] = useState( [] );
+  const prevSearch = useRef(search )
   
   const getMovies = useMemo( () => {
     if ( search === prevSearch ) return;
     return async ({search}) => {
       try {
-        setLoading( true )
+        setLoading( true );
+        
         setError( null );
-        const newMovies = await searchMovies({search})
+        const newMovies = await searchMovies( { search } )
+        
         setMovies(newMovies)
       } catch (error) {
         setError(error.message);
       } finally {
-        setLoading( false);
+         
+        setLoading( false )
+        
       }
     }
   },[] );

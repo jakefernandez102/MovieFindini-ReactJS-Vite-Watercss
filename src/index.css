@@ -115,9 +115,10 @@ html {
 body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', sans-serif;
   line-height: 1.4;
-  max-width: 800px;
-  margin: 20px auto;
-  padding: 0 10px;
+  max-width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0;
   word-wrap: break-word;
   color: #363636;
   color: var(--text-main);
@@ -131,6 +132,7 @@ body {
   body {
     background: #202b38;
     background: var(--background-body);
+    height: 100%;
   }
 }
 
@@ -139,15 +141,16 @@ body {
   body {
     color: #dbdbdb;
     color: var(--text-main);
+    height: 100%;
   }
 }
 
 button {
   transition:
-    background-color 0.1s linear,
-    border-color 0.1s linear,
-    color 0.1s linear,
-    box-shadow 0.1s linear,
+  background-color 0.1s linear,
+  border-color 0.1s linear,
+  color 0.1s linear,
+  box-shadow 0.1s linear,
     transform 0.1s ease;
   transition:
     background-color var(--animation-duration) linear,

@@ -3,9 +3,24 @@
    flex-direction: column;
    justify-content: center;
    align-items: center;
-   width: 100%;
+   /* width: 100%; */
    max-width: 1200px;
+   margin: 50px auto 0 auto;
+}
 
+@media screen and (max-width: 480px) {
+   .page {
+      margin-top: 50px;
+   }
+
+}
+
+@media screen and (max-width: 480px) {
+   .form {
+      display: flex;
+      flex-direction: column;
+      margin-top: 20px;
+   }
 }
 
 main {
@@ -22,31 +37,37 @@ form {
 
 .header {
    width: 100%;
-   height: 250px;
+   height: 380px;
    display: flex;
    flex-direction: column;
    align-items: center;
    justify-content: space-evenly;
    position: relative;
 }
-
+@media screen and (max-width: 480px){
+   .header {
+      height: 450px;
+      
+   }
+   
+}
 .error {
-   position: absolute;
-   bottom: -30px;
-   left: 230px;
+   position: relative;
+   bottom: 30px;
+   left: -100px;
 }
 
 .error::after {
+   position: absolute;
    display: block;
    content: '';
    border-bottom: 20px solid lightcoral;
    border-right: 20px solid red;
-   position: absolute;
    padding: 10px;
-   z-index: -1;
    rotate: 225deg;
    top: -12px;
    right: 50%;
+   z-index: -2;
 
 }
 
@@ -54,6 +75,11 @@ form {
    position: relative;
    transition: all 500ms ease-in-out;
    letter-spacing: 2.5px;
+}
+@media screen and (max-width: 480px){
+   .heading{
+      margin-top: 200px;
+   }
 }
 
 .heading::after {
@@ -65,16 +91,16 @@ form {
    height: 95px;
    top: -25px;
    left: -110px;
-   background-color: rgb(255 255 255 /.1);
+   background-color: rgba(239, 229, 229, 0.1);
    border: 2px dotted brown;
    border-radius: 20%;
    box-shadow: .1px .1px 10px .1px white;
    transition: all 500ms ease-in-out;
 }
 
-@media screen and (max-width: 443px) {
+@media screen and (max-width: 480px) {
    .heading::after {
-      top: -90px;
+      top: -100px;
       left: 70px
    }
 
@@ -111,7 +137,7 @@ form {
    height: 95px;
    top: -25px;
    left: -110px;
-   background-color: rgb(255 255 255 /.1);
+   background-color: rgba(208, 158, 158, 0.504);
    border: 2px dotted brown;
    border-radius: 20%;
    box-shadow: .1px .1px 20px 1px rgb(225, 81, 81);
@@ -127,23 +153,40 @@ form {
    height: 95px;
    top: -25px;
    left: -110px;
-   background-color: rgb(255 255 255 /.1);
+   background-color: rgba(160, 185, 135, 0.504);
    border: 2px dotted brown;
    border-radius: 20%;
    box-shadow: .1px .1px 20px 1px rgb(105, 225, 81);
    transition: all 500ms ease-in-out;
 }
 
+@media screen and (max-width: 480px) {
+
+   .isError::after {
+      top: -100px;
+      left: 70px
+   }
+
+   .noError::after {
+      top: -100px;
+      left: 70px
+   }
+}
+
 .movies {
    background-color: var(--background);
    border-radius: 10px;
    display: grid;
-   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-   width: 100%;
+   grid-template-columns: repeat(5, minmax(200px, 1fr));
+   column-gap: 25px;
+   row-gap: 100px;
+   max-width: 800px;
    margin: 0;
    padding: 15px;
    list-style: none;
-   gap: 16px;
+   overflow-y: hidden;
+   overflow-x: scroll;
+   scroll-snap-type: x mandatory;
 }
 
 .movie {
@@ -154,6 +197,7 @@ form {
    gap: 16px;
    text-align: center;
    box-shadow: 1px 1px 10px .1px rgb(82, 183, 150);
+   scroll-snap-align: center;
 }
 
 .movie h3,
@@ -161,9 +205,11 @@ form {
    margin: 0;
    padding: 0;
 }
-.movie h3{
+
+.movie h3 {
    margin-top: 20px;
 }
+
 .movie p {
    font-weight: 700;
    font-size: 20px;

@@ -7,12 +7,13 @@ export const ListMovies = ({ movies }) => {
           key={ movie.id }
           className="movie"
         >
-          <h3>{movie.title}</h3>
-          <p>{movie.year}</p>
           <img
             src={movie.poster !== 'N/A' ? movie.poster : '../../public/wizard.png '}
             alt={movie.title}
           />
+          <h3>{ movie.title }</h3>
+          <p>{ movie.type}</p>
+          <p>{movie.year}</p>
         </li>
       ))}
     </ol>
