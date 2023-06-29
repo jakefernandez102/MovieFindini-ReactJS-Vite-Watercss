@@ -105,10 +105,10 @@ function App() {
   movies?.length !==0 ? fillImages() : null;
 
   const bgImageStyle= {
-    backgroundImage: `linear-gradient(to top, rgb(0 0 0 /.8),rgb(0 0 0 /1)),url(${movies?.length===0 ? movieFake[0]?.poster : images[bgImage] })`,
+    backgroundImage: `linear-gradient(to bottom, rgb(0 0 0 /.8),rgb(0 0 0 /1)),url(${movies?.length===0 ? movieFake[0]?.poster : images[bgImage] })`,
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
-    backgroundPosition: "center",
+    backgroundPosition: "center ",
   }
   return (
     <>

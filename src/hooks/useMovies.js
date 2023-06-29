@@ -4,7 +4,7 @@ import { useMemo, useRef, useState } from 'react';
 import { searchMovies } from '../services/movies';
 
 
-export function useMovie({search,sort}) {
+export function useMovie({search,sort,selectTypeValue}) {
   
   const [ movies, setMovies ] = useState( [] );
   const [ loading , setLoading] = useState( false );
@@ -33,7 +33,11 @@ export function useMovie({search,sort}) {
   },[] );
   const sortMovies = useMemo( () => {
     return (search === '') ? movies : sort === '1' ? [ ...movies ]?.sort( ( a, b ) => a.year - b.year ) : sort === '2' ? [ ...movies ]?.sort( ( a, b ) => a.title.localeCompare( b.title ) ) : movies;
-  }, [sort, movies] );
-
-  return {movies: sortMovies , getMovies,loading}
+  }, [ sort, movies ] );
+  
+  const selectTypes = ( ) => {
+    // console.log(selectTypeValue);
+    return movies?.filter(movie => movie?.type === selectTypeValue)
+  }
+  return {movies: sortMovies , getMovies,loading,selectTypes}
 }

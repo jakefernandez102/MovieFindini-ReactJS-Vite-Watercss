@@ -43,6 +43,8 @@ form {
    align-items: center;
    justify-content: space-evenly;
    position: relative;
+   transition: all 500ms ease-in-out;
+   box-shadow: 1px 10px 30px 15px black;
 }
 @media screen and (max-width: 480px){
    .header {
@@ -56,7 +58,12 @@ form {
    bottom: 30px;
    left: -100px;
 }
-
+@media screen and (max-width: 480px){
+   .error{
+      bottom: 100px;
+      left: 0px;
+   }
+}
 .error::after {
    position: absolute;
    display: block;
@@ -68,7 +75,15 @@ form {
    top: -12px;
    right: 50%;
    z-index: -2;
-
+}
+@media screen and (max-width: 480px){
+   .error::after {
+      position: absolute;
+      top: -12px;
+      right: 50%;
+      z-index: 11;
+   }
+   
 }
 
 .heading {
@@ -101,7 +116,7 @@ form {
 @media screen and (max-width: 480px) {
    .heading::after {
       top: -100px;
-      left: 70px
+      left: 85px
    }
 
 }
@@ -136,7 +151,7 @@ form {
    width: 95px;
    height: 95px;
    top: -25px;
-   left: -110px;
+   left: -11px;
    background-color: rgba(208, 158, 158, 0.504);
    border: 2px dotted brown;
    border-radius: 20%;
@@ -164,12 +179,12 @@ form {
 
    .isError::after {
       top: -100px;
-      left: 70px
+      left: 85px
    }
 
    .noError::after {
       top: -100px;
-      left: 70px
+      left: 85px
    }
 }
 
